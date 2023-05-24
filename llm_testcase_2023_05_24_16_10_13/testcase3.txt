@@ -1,0 +1,17 @@
+//root/src/components/DropDown/__tests__/DropDown.test.tsx
+
+import React from 'react';
+import { render } from '@testing-library/react';
+import DropDown from '../DropDown/DropDown';
+
+describe('DropDown component', () => {
+  it('renders label with correct styles', () => {
+    const { getByText } = render(<DropDown label="Test Label" />);
+    const label = getByText('Test Label');
+    expect(label).toHaveStyle(`
+      font-weight: 700;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    `);
+  });
+});
