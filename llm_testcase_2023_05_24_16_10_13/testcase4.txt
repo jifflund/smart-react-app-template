@@ -1,0 +1,38 @@
+//root/src/components/DropDown/__tests__/DropDown.test.tsx
+
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import DropDown from '../DropDown';
+
+describe('DropDown component', () => {
+  const options = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ];
+
+  const onChange = jest.fn();
+
+  it('renders label and options correctly', () => {
+    const { getByLabelText, getByText } = render(
+      <DropDown label="Test Label" id="test-id" options={options} onChange={onChange} selectedValue={null} />
+    );
+
+    expect(getByLabelText('Test Label')).toBeInTheDocument();
+    expect(getByText('Option 1')).toBeInTheDocument();
+    expect(getByText('Option 2')).toBeInTheDocument();
+    expect(getByText('Option 3')).toBeInTheDocument();
+  });
+
+  it('calls onChange when an option is selected', () => {
+    const { getByLabelText, getByText } = render(
+      <DropDown label="Test Label" id="test-id" options={options} onChange={onChange} selectedValue={null} />
+    );
+
+    fireEvent.change(getByLabelText('Test Label'), { target: { value: 'option2' } });
+
+    expect(onChange).toHaveBeenCalledWith({ label: 'Option 2', value: 'option2' });
+  });
+});
+
+// The test case is for the DropDown component in the file root/src/components/DropDown/DropDown.tsx.
