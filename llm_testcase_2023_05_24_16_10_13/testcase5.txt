@@ -1,0 +1,12 @@
+//root/src/components/DropDown/__tests__/DropDown.test.tsx
+
+import React from 'react';
+import { render } from '@testing-library/react';
+import DropDown from '../DropDown';
+
+describe('DropDown component', () => {
+  it('renders without crashing', () => {
+    const { getByTestId } = render(<DropDown />);
+    expect(getByTestId('dropdown')).toBeInTheDocument();
+  });
+});
