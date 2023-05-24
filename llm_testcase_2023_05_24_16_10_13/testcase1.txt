@@ -1,0 +1,21 @@
+//root/public/index.test.js
+
+import React from 'react';
+import { render } from '@testing-library/react';
+import Index from './index.html';
+
+describe('Index', () => {
+  it('renders the title', () => {
+    const { getByText } = render(<Index />);
+    const titleElement = getByText(/SMART on FHIR React Template/i);
+    expect(titleElement).toBeInTheDocument();
+  });
+
+  it('renders the config.js script', () => {
+    const { getByLabelText } = render(<Index />);
+    const scriptElement = getByLabelText('config.js');
+    expect(scriptElement).toBeInTheDocument();
+  });
+});
+
+// Note: This test case assumes that the input file is being imported as a React component and that the necessary dependencies are installed. It also assumes that the testing library is being used for rendering and querying the DOM.
